@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>block it</title>
+
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <script src="./saving/init.js"></script>
+    <script src="./saving/handlers.js"></script>
+
+    <script src="./linking/ctr-c.js"></script>
+    <script src="./linking/open-in-pytut.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <link href="./preview/modal.css" rel="stylesheet" />
+    <script src="./preview/global-vars.js"></script>
+    <script src="./preview/modal.js"></script>
+    <script src="./preview/scripts.js"></script>
+  </head>
+  <body>
+    <link rel="stylesheet" href="assets/droplet.css"/>
+    <div class="container">
+      <br>
+      <div class="row">
+        <div class="col-xs-6">
+          <button class="btn btn-primary" id="toggle">Toggle Blocks</button>
+        </div>
+      </div>
+      <br/>
+      <div id="editor-wrapper" style="position:relative;width:100%;height:500px;border: 1px solid black;">
+        <div id="editor"></div>
+      </div>
+      <div>
+        <button onclick="save_snippet()">save snippet</button>
+        run it: <button onclick="open_in_pytut();">in python tutor</button> <button onclick="copy_it();">in console</button> <br>
+      </div>
+      <div>
+        <button onclick="save_notes();">save notes</button>
+      </div>
+
+      <div id="notes" style="position: relative; width: 800px; height: 400px;"></div>
+
+      file name: <input id="file-name"></input>
+      <button onclick="preview_file()">
+        <a style="text-decoration: none; color: black;" href="#guesses-history" data-modal-open>
+          preview file
+        </a>
+      </button>
+      <button onclick="download_session()">download file</button>
+      <button onclick="clear_session()">clear session</button>
+
+
+    </div>
+
+    <br/>
+    <hr>
+    <p> <a href="https://github.com/janke-learning/code-along" target="_blank">code-along source code</a>, powered by <a href="https://github.com/droplet-editor/droplet" target="_blank">  droplet </a> & <a href="https://github.com/ajaxorg/ace" target="_blank">  ace </assets>
+    <br>
+    <hr>  
+    <hr>  
+    <a href="http://janke-learning.org" target="_blank"><img src="https://user-images.githubusercontent.com/18554853/50098409-22575780-021c-11e9-99e1-962787adaded.png" width="40" height="40"></img> Janke Learning</a> 
+
+
+
+    <!-- begin guess history modal -->
+
+  <div id="guesses-history" style="display:none; overflow-y: hidden;">
+    <div style="padding-right: 5%; padding-left: 5%; padding-bottom: 5%; overflow-y: hidden;">
+      <br>
+      <div>
+        <div id="filename-zone" class="prettyprint"></div>  
+      </div>
+      <br>
+      <div >
+        <div id="preview-zone" style="height: 75vh; width: 100vh; overflow-y: auto"></div>
+      </div>
+    </div>
+  </div>
+    <div class="modal" style="overflow-y: hidden;">
+      <div class="modal-inner" style="height: 100%; width: 100%; overflow-y: hidden;">
+        <a data-modal-close>X</a>
+        <div class="modal-content" style="overflow-y: hidden;"></div>
+      </div>
+    </div>
+
+    <!-- <script src="./guesses-history/modal.js"></script> -->
+    <script>var modal = new VanillaModal.default();</script>
+
+    <!-- end guess history modal -->
+
+    <script src="assets/ace/ace.js"></script>
+    <script src="assets/droplet-full.js"></script>
+    <script>
+      var modes = {
+        'javascript': {
+          mode: 'javascript',
+          palette: [
+            {
+              'name': 'Output',
+              'color': 'blue',
+              'blocks': [
+                {'block': 'console.log("hello");'},
+              ]
+            },
+            {
+              'name': 'Variables',
+              'color': 'blue',
+              'blocks': [
+                {'block': 'var a = 10;'},
+                {'block': 'a = 10;'},
+                {'block': 'a += 1;'},
+                {'block': 'a -= 10;'},
+                {'block': 'a *= 1;'},
+                {'block': 'a /= 1;'}
+              ]
+            },
+            {
+              'name': 'Functions',
+              'color': 'purple',
+              'blocks': [
+                {'block': 'function myFunction(param) {\n  __\n}'},
+                {'block': 'myFunction(arg);'},
+              ]
+            },
+            {
+              'name': 'Logic',
+              'color': 'teal',
+              'blocks': [
+                {'block': 'a === b'},
+                {'block': 'a !== b'},
+                {'block': 'a > b'},
+                {'block': 'a < b'},
+                {'block': 'a || b'},
+                {'block': 'a && b'},
+                {'block': '!a'}
+              ]
+            },
+            {
+              'name': 'Operators',
+              'color': 'green',
+              'blocks': [
+                {'block': 'a + b'},
+                {'block': 'a - b'},
+                {'block': 'a * b'},
+                {'block': 'a / b'},
+                {'block': 'a % b'},
+                {'block': 'Math.pow(a, b)'},
+                {'block': 'Math.sin(a)'},
+                {'block': 'Math.tan(a)'},
+                {'block': 'Math.cos(a)'},
+                {'block': 'Math.random()'}
+              ]
+            },
+            {
+              'name': 'Control flow',
+              'color': 'orange',
+              'blocks': [
+                {'block': 'for (var i = 0; i < 10; i++) {\n  __\n}'},
+                {'block': 'if (a === b) {\n  __\n}'},
+                {'block': 'if (a === b) {\n  __\n} else {\n  __\n}'},
+                {'block': 'while (true) {\n  __\n}'},
+                {'block': 'function myFunction(param) {\n  __\n}'}
+              ]
+            },
+
+            // {
+            //   'name': 'Arrays',
+            //   'color': 'purple',
+            //   'blocks': [
+            //     {'block': '[__]'},
+            //     {'block': 'a.push(__)'}
+            //   ]
+            // },
+          ]
+        }
+      };
+
+      var sessions = {};
+
+      var editor = new droplet.Editor(document.getElementById('editor'), modes['javascript']);
+
+      // var query = read_snippet_query();
+
+      // if (query) {
+      //   editor.toggleBlocks()
+      //   editor.setValue(decode_query(query));
+      // };
+
+      document.getElementById('toggle').addEventListener('click', function() {
+        editor.toggleBlocks();
+      });
+
+      var notes = ace.edit("notes");
+
+      notes.setTheme('ace/theme/chrome');
+      // notes.getSession().setMode('ace/mode/javascript');
+      notes.setFontSize(13);
+      notes.getSession().setTabSize(2);
+
+      model = init_session();
+    </script>
+  </body>
+</html>
