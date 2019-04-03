@@ -1,6 +1,8 @@
 # Code Along
 
-A site for live code-alongs or group studying.  You can follow along with the examples, editing with blocks or text.  If you come across a great snippet you can save it along with your notes, download them as a JS file, and review them later (or make exercises, or even turn them in as homework).
+A site for live code-alongs or group studying, as a teacher or a student.  You can edit with blocks or text, and take notes on the side.  
+
+If you come across a great snippet you can save it along with your notes, download them as a JS file, and review them later.  (Or assign them as exercises, or even turn them in as homework).
 
 > powered by [droplet](https://github.com/droplet-editor/droplet) & [ace](https://github.com/ajaxorg/ace)
 
