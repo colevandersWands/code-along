@@ -98,19 +98,26 @@
       var modes = {
         'javascript': {
           mode: 'javascript',
+          modeOptions: {
+            // functions: {
+            //   fd: { command: true, color: 'red'},
+            //   bk: { command: true, color: 'blue'},
+            //   sin: { command: false, value: true, color: 'green' }
+            // },
+            // categories: {
+            //   conditionals: { color: 'purple' },
+            //   loops: { color: 'green' },
+            //   functions: { color: '#49e' }
+            // }
+          },
           palette: [
-            {
-              'name': 'Output',
-              'color': 'blue',
-              'blocks': [
-                {'block': 'console.log("hello");'},
-              ]
-            },
             {
               'name': 'Variables',
               'color': 'blue',
               'blocks': [
                 {'block': 'var a = 10;'},
+                // {'block': 'let a = 10;'},
+                // {'block': 'const a = 10;'},
                 {'block': 'a = 10;'},
                 {'block': 'a += 1;'},
                 {'block': 'a -= 10;'},
@@ -119,24 +126,37 @@
               ]
             },
             {
-              'name': 'Functions',
-              'color': 'purple',
+              'name': 'Output',
+              'color': 'blue',
               'blocks': [
-                {'block': 'function myFunction(param) {\n  __\n}'},
-                {'block': 'myFunction(arg);'},
+                {'block': 'console.log("hello");'},
+                {'block': 'console.assert(a, b);'},
+              ]
+            },
+            {
+              'name': 'Primitives',
+              'color': 'green',
+              'blocks': [
+                {'block': 'typeof __'},
+                {'block': 'void __'},
+                {'block': 'Number(__)'},
+                {'block': 'Boolean(__)'},
+                {'block': 'String(__)'}
               ]
             },
             {
               'name': 'Logic',
               'color': 'teal',
               'blocks': [
+                {'block': 'a || b'},
+                {'block': 'a && b'},
+                {'block': '!a'},
                 {'block': 'a === b'},
                 {'block': 'a !== b'},
                 {'block': 'a > b'},
                 {'block': 'a < b'},
-                {'block': 'a || b'},
-                {'block': 'a && b'},
-                {'block': '!a'}
+                {'block': 'a >= b'},
+                {'block': 'a <= b'},
               ]
             },
             {
@@ -148,33 +168,51 @@
                 {'block': 'a * b'},
                 {'block': 'a / b'},
                 {'block': 'a % b'},
-                {'block': 'Math.pow(a, b)'},
-                {'block': 'Math.sin(a)'},
-                {'block': 'Math.tan(a)'},
-                {'block': 'Math.cos(a)'},
-                {'block': 'Math.random()'}
+                {'block': 'a++'},
+                {'block': '++a'},
+                {'block': 'a--'},
+                {'block': '--a'},
+                // {'block': 'Math.pow(a, b)'},
+                // {'block': 'Math.sin(a)'},
+                // {'block': 'Math.tan(a)'},
+                // {'block': 'Math.cos(a)'},
+                // {'block': 'Math.random()'}
               ]
             },
             {
               'name': 'Control flow',
               'color': 'orange',
               'blocks': [
-                {'block': 'for (var i = 0; i < 10; i++) {\n  __\n}'},
                 {'block': 'if (a === b) {\n  __\n}'},
                 {'block': 'if (a === b) {\n  __\n} else {\n  __\n}'},
                 {'block': 'while (true) {\n  __\n}'},
-                {'block': 'function myFunction(param) {\n  __\n}'}
+                {'block': 'for (var i = 0; i < 10; i++) {\n  __\n}'},
               ]
             },
-
-            // {
-            //   'name': 'Arrays',
-            //   'color': 'purple',
-            //   'blocks': [
-            //     {'block': '[__]'},
-            //     {'block': 'a.push(__)'}
-            //   ]
-            // },
+            {
+              'name': 'Reference Types',
+              'color': 'purple',
+              'blocks': [
+                // {'block': 'var arr = [__];'},
+                {'block': 'arr[index]'},
+                {'block': 'arr.push(__)'},
+                {'block': 'arr.pop(__)'},
+                {'block': 'arr.slice(__)'},
+                {'block': 'obj.property'},
+                {'block': 'obj[key]'},
+                // {'block': 'Object.keys(__)'},
+                // {'block': 'Object.values(__)'},
+              ]
+            },
+            {
+              'name': 'Functions',
+              'color': 'purple',
+              'blocks': [
+                {'block': 'function myFunction(param) {\n  __\n}'},
+                {'block': 'myFunction(arg);'},
+                {'block': 'return __;'},
+              ]
+            },
           ]
         }
       };
