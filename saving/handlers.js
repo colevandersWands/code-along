@@ -32,8 +32,6 @@ function download_session() {
 
   var notes = model.get_notes();
   var snippets = model.get_snippets();
-  console.log(notes.length)
-  console.log(snippets.length)
 
   if (notes.length === 0 && snippets.length === 0) {
 
