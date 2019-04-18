@@ -14,6 +14,7 @@
 
     <script src="./linking/ctr-c.js"></script>
     <script src="./linking/open-in-pytut.js"></script>
+    <script src="./linking/open-in.js"></script>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <link href="./preview/modal.css" rel="stylesheet" />
@@ -36,7 +37,12 @@
       </div>
       <div>
         <button onclick="save_snippet()">save snippet</button>
-        run it: <button onclick="open_in_pytut();">in python tutor</button> <button onclick="copy_it();">in console</button> <br>
+        run it: <button onclick="open_in_pytut();">in python tutor</button> <button onclick="copy_it();">in console</button> 
+        study it with: <button onclick="open_in('parsonizer');">parsonizer</button>
+        <button onclick="open_in('spot');">spot</button>  
+        <button onclick="open_in('shuffle');">shuffle</button>
+        <button onclick="open_in('flowviz');">flowviz</button>
+        <button onclick="open_in('linter');">linter</button>  <br>
       </div>
       <div>
         <button onclick="save_notes();">save notes</button>
@@ -126,14 +132,6 @@
               ]
             },
             {
-              'name': 'Output',
-              'color': 'blue',
-              'blocks': [
-                {'block': 'console.log("hello");'},
-                {'block': 'console.assert(a, b);'},
-              ]
-            },
-            {
               'name': 'Primitives',
               'color': 'green',
               'blocks': [
@@ -211,6 +209,16 @@
                 {'block': 'function myFunction(param) {\n  __\n}'},
                 {'block': 'myFunction(arg);'},
                 {'block': 'return __;'},
+              ]
+            },
+            {
+              'name': 'For Humans',
+              'color': 'blue',
+              'blocks': [
+                {'block': 'console.log("hello");'},
+                {'block': 'console.assert(a, b);'},
+                {'block': '// comment'},
+                // {'block': '/*  */'},
               ]
             },
           ]
