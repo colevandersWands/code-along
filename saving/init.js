@@ -1,12 +1,3 @@
-var model = { // sets the functions in init_session
-  save_snippet: null,
-  get_snippets: null,
-  clear_snippets: null,
-  save_notes: null,
-  get_notes: null,
-  clear_notes: null
-};
-
 // https://stackoverflow.com/questions/16427636/check-if-localstorage-is-available/16427725
 function init_session() {
   var instance_model = {};
