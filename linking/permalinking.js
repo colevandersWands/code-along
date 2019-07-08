@@ -27,39 +27,20 @@ function decode_query(coded_challenge) {
 };
 
 function gen_permalink() {
-
- if (editor.session.currentlyUsingBlocks) {
-    editor.toggleBlocks(cb);
-  } else {
-    cb();
-  };
-
-  function cb() {
-    var code = editor.aceEditor.getValue();
-    var url = generate_permalink(code, encode_query, 'code-along'); 
-    var _notes = notes.getValue();
-    url += '&notes=' + encode_query(_notes);
-    var perma_display = document.getElementById("display-perma");
-    perma_display.value = url;
-    copy_to_clipboard(url); 
-    alert('copied permalink');
-  }
+  var code = editor.getValue();
+  var url = generate_permalink(code, encode_query, 'code-along'); 
+  var _notes = notes.getValue();
+  url += '&notes=' + encode_query(_notes);
+  var perma_display = document.getElementById("display-perma");
+  perma_display.value = url;
+  copy_to_clipboard(url); 
+  alert('copied permalink');
 }
 
 function open_in(viztool) {
-  if (editor.session.currentlyUsingBlocks) {
-    editor.toggleBlocks(function () {
-      cb(viztool);
-    });
-  } else {
-    cb(viztool);
-  };
-
-  function cb(viztool) {
-    var code = editor.aceEditor.getValue();
-    var url = generate_permalink(code, encode_query, viztool);
-    window.open(url, '_blank');
-  }
+  var code = editor.getValue();
+  var url = generate_permalink(code, encode_query, viztool);
+  window.open(url, '_blank');
 };
 
 
