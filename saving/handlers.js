@@ -15,7 +15,10 @@ function save_snippet() {
 
 function download_session() {
 
-  var text = notes.getValue();
+  var editor_snippet = editor.getValue();
+  var notes_text = notes.getValue();
+
+  var full_text = "// current snippet\n\n"+editor_snippet+"\n\n"+notes_text;
 
   var filename_input = document.getElementById("file-name").value;
   var filename;
@@ -25,7 +28,7 @@ function download_session() {
     filename = "study-session.js";
   };
 
-  download(filename, text);
+  download(filename, full_text);
 
   alert("successfully downloaded session");
 
